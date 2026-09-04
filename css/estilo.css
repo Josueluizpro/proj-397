@@ -1,15 +1,15 @@
-
 body{
-    background-color:  #FFFFFF;
+    background-color: #FFFFFF;
     color: #333333;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 18PX;
+    font-size: 18px;
     line-height: 1.7;
+    margin: 0;
 }
 
 h1{
     color: #C62828;
-    text-align : center;
+    text-align: center;
     font-size: 40px;
 }
 
@@ -20,17 +20,17 @@ h2{
 
 h3{
     color: #F4A261;
-    font-size: 24;
+    font-size: 24px;
 }
 
 p{
-    text-align:justify;
-    color: #333333
+    text-align: justify;
+    color: #333333;
 }
 
 a{
     color: #1976D2;
-    text-decoration: nome;
+    text-decoration: none;
     font-weight: bold;
 }
 
@@ -38,13 +38,49 @@ a:hover{
     color: #D32F2F;
 }
 
-
 li{
     background-color: rgb(244, 245, 248);
     border: 1px solid rgb(227, 227, 231);
-
 }
 
 hr{
-    border:2px solid black;
+    border: 2px solid black;
+}
+
+
+/* ===== RESPONSIVIDADE ===== */
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* ===== CELULAR ===== */
+
+@media (max-width: 768px) {
+
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    p {
+        text-align: left;
+    }
+
 }
