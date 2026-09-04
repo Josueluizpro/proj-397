@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Controle | Vikings Robots</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #fff7ed;
+        --muted: #c7d1d8;
+        --night: #07090d;
+        --panel: rgba(14, 18, 27, 0.86);
+        --line: rgba(255, 255, 255, 0.16);
+        --blue: #0875ff;
+        --orange: #ff6b00;
+        --gold: #ffb33c;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 78% 18%, rgba(255, 107, 0, 0.2), transparent 24%),
+          radial-gradient(circle at 18% 15%, rgba(8, 117, 255, 0.22), transparent 28%),
+          linear-gradient(180deg, #101722 0%, var(--night) 58%);
+        color: var(--ink);
+        min-height: 100vh;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      header,
+      main {
+        margin: 0 auto;
+        max-width: 980px;
+        padding: 28px clamp(18px, 5vw, 44px);
+      }
+
+      header {
+        align-items: center;
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+      }
+
+      .brand {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+      }
+
+      .brand img {
+        height: 58px;
+        object-fit: contain;
+        width: 58px;
+      }
+
+      .back {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font-weight: 900;
+        padding: 12px 16px;
+      }
+
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+        padding: clamp(20px, 4vw, 32px);
+      }
+
+      h1 {
+        font-size: clamp(2.2rem, 7vw, 4.6rem);
+        line-height: 0.92;
+        margin: 0 0 16px;
+      }
+
+      p {
+        color: var(--muted);
+        line-height: 1.6;
+        margin-top: 0;
+      }
+
+      form {
+        display: grid;
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      label {
+        display: grid;
+        font-weight: 900;
+        gap: 8px;
+      }
+
+      input,
+      textarea {
+        background: rgba(7, 9, 13, 0.9);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        font: inherit;
+        padding: 13px 14px;
+        width: 100%;
+      }
+
+      textarea {
+        resize: vertical;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 8px;
+      }
+
+      button {
+        border: 1px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 900;
+        min-height: 46px;
+        padding: 12px 16px;
+      }
+
+      .save {
+        background: var(--orange);
+        color: #080a0f;
+      }
+
+      .clear {
+        background: transparent;
+        border-color: var(--line);
+        color: var(--ink);
+      }
+
+      .status {
+        color: var(--gold);
+        font-weight: 900;
+        min-height: 24px;
+      }
+
+      .note {
+        border-left: 4px solid var(--blue);
+        margin-top: 24px;
+        padding-left: 14px;
+      }
+
+      @media (max-width: 660px) {
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <img src="vikiings.png" alt="Logo Vikings Robots" />
+        <div>
+          <strong>Vikings Robots</strong>
+          <p>Controle da previa</p>
+        </div>
+      </div>
+      <a class="back" href="index.html">Voltar ao site</a>
+    </header>
+
+    <main>
+      <section class="panel">
+        <h1>Controle do site</h1>
+        <p>
+          Edite as informacoes principais da previa. As mudancas ficam salvas neste navegador
+          e aparecem na pagina inicial quando voce voltar ao site.
+        </p>
+
+        <form id="control-form">
+          <label>
+            Nome da equipe
+            <input name="teamName" value="Vikings Robots" />
+          </label>
+          <label>
+            Escola / unidade
+            <input name="schoolName" value="SESI-SP CE-397 Maua" />
+          </label>
+          <label>
+            Texto da capa
+            <textarea name="heroText" rows="4">Somos a equipe de robotica do SESI-SP CE-397 Maua. Unimos tecnologia, coragem e trabalho em equipe para transformar ideias em projetos reais.</textarea>
+          </label>
+          <label>
+            Titulo da secao Sobre
+            <input name="aboutTitle" value="Construir robos como quem prepara uma expedicao." />
+          </label>
+          <label>
+            Texto de contato
+            <textarea name="contactText" rows="4">Este espaco pode receber o Instagram da equipe, e-mail institucional, formulario ou links para o diario completo.</textarea>
+          </label>
+
+          <div class="actions">
+            <button class="save" type="submit">Salvar alteracoes</button>
+            <button class="clear" type="button" id="clear-button">Restaurar original</button>
+          </div>
+          <div class="status" id="status" role="status"></div>
+        </form>
+
+        <p class="note">
+          Para um site publicado oficialmente, o proximo passo e criar login e salvar essas
+          informacoes em um servidor ou painel online.
+        </p>
+      </section>
+    </main>
+
+    <script>
+      const storageKey = "vikings-site-control";
+      const form = document.querySelector("#control-form");
+      const status = document.querySelector("#status");
+      const clearButton = document.querySelector("#clear-button");
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
+
+      Object.entries(saved).forEach(([field, value]) => {
+        if (form.elements[field]) {
+          form.elements[field].value = value;
+        }
+      });
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const values = Object.fromEntries(new FormData(form).entries());
+        localStorage.setItem(storageKey, JSON.stringify(values));
+        status.textContent = "Alteracoes salvas. Volte ao site para ver a previa.";
+      });
+
+      clearButton.addEventListener("click", () => {
+        localStorage.removeItem(storageKey);
+        status.textContent = "Original restaurado. Recarregue o site para conferir.";
+      });
+    </script>
+  </body>
+</html>

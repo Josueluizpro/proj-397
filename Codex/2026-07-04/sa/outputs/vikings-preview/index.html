@@ -1,0 +1,924 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vikings Robots | SESI-SP CE-397 Maua</title>
+    <meta
+      name="description"
+      content="Site da equipe Vikings Robots do SESI-SP CE-397 Maua, com identidade, diario de bordo e projetos de robotica."
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #fff7ed;
+        --muted: #c7d1d8;
+        --night: #07090d;
+        --panel: rgba(14, 18, 27, 0.82);
+        --line: rgba(255, 255, 255, 0.16);
+        --blue: #0875ff;
+        --blue-soft: #1ba3ff;
+        --orange: #ff6b00;
+        --gold: #ffb33c;
+        --steel: #cfd7df;
+        --shadow: 0 22px 70px rgba(0, 0, 0, 0.38);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at 78% 18%, rgba(255, 107, 0, 0.2), transparent 24%),
+          radial-gradient(circle at 18% 15%, rgba(8, 117, 255, 0.22), transparent 28%),
+          linear-gradient(180deg, #101722 0%, var(--night) 52%, #0d1118 100%);
+        color: var(--ink);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .topbar {
+        align-items: center;
+        backdrop-filter: blur(18px);
+        background: rgba(7, 9, 13, 0.86);
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        inset: 0 0 auto;
+        justify-content: space-between;
+        min-height: 74px;
+        padding: 12px clamp(18px, 4vw, 58px);
+        position: fixed;
+        z-index: 10;
+      }
+
+      .brand {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+      }
+
+      .brand img {
+        height: 48px;
+        object-fit: contain;
+        width: 48px;
+      }
+
+      .brand strong,
+      .brand small {
+        display: block;
+      }
+
+      .brand small {
+        color: var(--muted);
+        font-size: 0.78rem;
+        margin-top: 2px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 6px;
+      }
+
+      .nav a {
+        border-radius: 7px;
+        color: var(--muted);
+        font-weight: 800;
+        padding: 10px 12px;
+      }
+
+      .nav a:hover {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--ink);
+      }
+
+      .hero {
+        align-items: center;
+        display: grid;
+        gap: 42px;
+        grid-template-columns: minmax(0, 0.96fr) minmax(300px, 0.72fr);
+        min-height: 94vh;
+        overflow: hidden;
+        padding: 122px clamp(18px, 5vw, 74px) 62px;
+        position: relative;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(90deg, transparent 0 28px, rgba(8, 117, 255, 0.1) 28px 30px, transparent 30px 58px),
+          linear-gradient(0deg, transparent 0 28px, rgba(255, 107, 0, 0.08) 28px 30px, transparent 30px 58px);
+        content: "";
+        inset: 0;
+        opacity: 0.42;
+        position: absolute;
+      }
+
+      .ship {
+        bottom: 8%;
+        height: 180px;
+        left: 47%;
+        opacity: 0.28;
+        position: absolute;
+        transform: translateX(-50%);
+        width: min(540px, 86vw);
+      }
+
+      .mast {
+        background: var(--steel);
+        height: 176px;
+        left: 48%;
+        position: absolute;
+        top: 0;
+        width: 7px;
+      }
+
+      .sail {
+        background: linear-gradient(145deg, #eef4fb, var(--blue), #083f94);
+        clip-path: polygon(52% 0, 100% 88%, 0 76%);
+        height: 150px;
+        left: 27%;
+        position: absolute;
+        top: 6px;
+        width: 190px;
+      }
+
+      .hull {
+        background: linear-gradient(180deg, var(--orange), #2b1408);
+        border-bottom: 7px solid #050608;
+        bottom: 4px;
+        clip-path: polygon(0 9%, 78% 9%, 100% 0, 83% 68%, 22% 100%);
+        height: 70px;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+
+      .hero-copy,
+      .logo-stage {
+        position: relative;
+        z-index: 1;
+      }
+
+      .eyebrow {
+        color: var(--gold);
+        font-size: 0.78rem;
+        font-weight: 900;
+        letter-spacing: 0;
+        margin: 0 0 12px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        font-size: clamp(3.2rem, 8.5vw, 7.7rem);
+        line-height: 0.86;
+        margin-bottom: 24px;
+        max-width: 8ch;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 4.8vw, 4rem);
+        line-height: 1;
+        margin-bottom: 18px;
+      }
+
+      h3 {
+        font-size: 1.18rem;
+        margin-bottom: 10px;
+      }
+
+      p {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .hero-copy p:not(.eyebrow) {
+        color: var(--ink);
+        font-size: clamp(1.05rem, 2vw, 1.35rem);
+        max-width: 650px;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      .button {
+        align-items: center;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        display: inline-flex;
+        font-weight: 900;
+        justify-content: center;
+        min-height: 46px;
+        padding: 12px 18px;
+      }
+
+      .primary {
+        background: var(--orange);
+        color: #080a0f;
+      }
+
+      .secondary {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.24);
+      }
+
+      .logo-stage {
+        align-items: center;
+        display: grid;
+        justify-items: center;
+      }
+
+      .logo-stage img {
+        filter: drop-shadow(0 26px 58px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 34px rgba(8, 117, 255, 0.36));
+        max-height: min(65vh, 650px);
+        max-width: min(44vw, 620px);
+        object-fit: contain;
+        width: 100%;
+      }
+
+      .stats {
+        display: grid;
+        gap: 1px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .stats article {
+        background: #111925;
+        min-height: 128px;
+        padding: 24px clamp(18px, 4vw, 42px);
+      }
+
+      .stats strong {
+        color: var(--orange);
+        display: block;
+        font-size: 2.2rem;
+        margin-bottom: 8px;
+      }
+
+      .section {
+        padding: clamp(64px, 9vw, 116px) clamp(18px, 5vw, 74px);
+      }
+
+      .split,
+      .identity-layout,
+      .contact {
+        display: grid;
+        gap: 42px;
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
+
+      .identity {
+        background:
+          linear-gradient(135deg, rgba(8, 117, 255, 0.16), rgba(255, 107, 0, 0.12)),
+          #0b1018;
+      }
+
+      .identity-preview {
+        align-items: center;
+        background: radial-gradient(circle, rgba(8, 117, 255, 0.22), transparent 64%);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: grid;
+        justify-items: center;
+        min-height: 420px;
+        padding: 28px;
+      }
+
+      .identity-preview img {
+        max-height: 360px;
+        max-width: 100%;
+        object-fit: contain;
+      }
+
+      .grid,
+      .roles,
+      .photos {
+        display: grid;
+        gap: 18px;
+        margin-top: 36px;
+      }
+
+      .grid,
+      .roles {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card,
+      .step,
+      .role,
+      .photo,
+      .form {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+      }
+
+      .card,
+      .role {
+        min-height: 190px;
+        padding: 24px;
+      }
+
+      .icon {
+        display: block;
+        height: 50px;
+        margin-bottom: 18px;
+        position: relative;
+        width: 50px;
+      }
+
+      .icon::before {
+        background: linear-gradient(145deg, var(--orange), var(--blue));
+        clip-path: polygon(50% 0, 96% 19%, 84% 78%, 50% 100%, 16% 78%, 4% 19%);
+        content: "";
+        inset: 0;
+        position: absolute;
+      }
+
+      .row {
+        align-items: end;
+        display: flex;
+        gap: 24px;
+        justify-content: space-between;
+      }
+
+      .filters {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        display: flex;
+        gap: 4px;
+        padding: 4px;
+      }
+
+      .filters button {
+        background: transparent;
+        border: 0;
+        border-radius: 6px;
+        color: var(--muted);
+        cursor: pointer;
+        font: inherit;
+        font-weight: 900;
+        min-height: 38px;
+        padding: 8px 12px;
+      }
+
+      .filters button.active {
+        background: var(--ink);
+        color: #080a0f;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 16px;
+        margin-top: 34px;
+      }
+
+      .step {
+        display: grid;
+        gap: 6px 18px;
+        grid-template-columns: 18px 110px 1fr;
+        padding: 22px;
+      }
+
+      .dot {
+        background: var(--orange);
+        border-radius: 50%;
+        box-shadow: 0 0 0 8px rgba(255, 107, 0, 0.12);
+        height: 14px;
+        margin-top: 7px;
+        width: 14px;
+      }
+
+      .status {
+        color: var(--gold);
+        font-size: 0.82rem;
+        font-weight: 900;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      .step h3,
+      .step p:last-child {
+        grid-column: 3;
+        margin: 0;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .team {
+        background: linear-gradient(135deg, #0f1723, rgba(8, 117, 255, 0.18));
+      }
+
+      .gallery {
+        background: #0b0f16;
+      }
+
+      .network {
+        background:
+          linear-gradient(135deg, rgba(255, 107, 0, 0.12), rgba(8, 117, 255, 0.14)),
+          #0d121b;
+      }
+
+      .network-grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 34px;
+      }
+
+      .project-card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        display: grid;
+        gap: 16px;
+        min-height: 260px;
+        overflow: hidden;
+        padding: 24px;
+        position: relative;
+      }
+
+      .project-card::before {
+        background: linear-gradient(90deg, var(--orange), var(--blue));
+        content: "";
+        height: 5px;
+        inset: 0 0 auto;
+        position: absolute;
+      }
+
+      .project-tag {
+        color: var(--gold);
+        font-size: 0.78rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+
+      .project-card .button {
+        align-self: end;
+        justify-self: start;
+      }
+
+      .photos {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .photo {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .placeholder {
+        align-items: center;
+        aspect-ratio: 16 / 10;
+        background: linear-gradient(135deg, #142238, var(--blue));
+        color: #07090d;
+        display: grid;
+        font-size: 2rem;
+        font-weight: 900;
+        min-height: 190px;
+        place-items: center;
+      }
+
+      .placeholder span {
+        background: rgba(255, 247, 237, 0.78);
+        border-radius: 8px;
+        display: grid;
+        height: 76px;
+        place-items: center;
+        width: 76px;
+      }
+
+      figcaption {
+        font-weight: 900;
+        padding: 16px 18px 18px;
+      }
+
+      .form {
+        display: grid;
+        gap: 16px;
+        padding: 22px;
+      }
+
+      label {
+        display: grid;
+        font-weight: 900;
+        gap: 8px;
+      }
+
+      input,
+      textarea {
+        background: rgba(7, 9, 13, 0.86);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        font: inherit;
+        padding: 13px 14px;
+        width: 100%;
+      }
+
+      .footer {
+        border-top: 1px solid var(--line);
+        display: flex;
+        gap: 18px;
+        justify-content: space-between;
+        padding: 24px clamp(18px, 5vw, 74px);
+      }
+
+      .footer p {
+        margin: 0;
+      }
+
+      .footer small {
+        color: var(--gold);
+        font-size: 0.82rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero,
+        .split,
+        .identity-layout,
+        .contact {
+          grid-template-columns: 1fr;
+        }
+
+        .logo-stage img {
+          max-width: min(78vw, 520px);
+        }
+
+        .grid,
+        .roles {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .row {
+          align-items: start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .nav {
+          display: none;
+        }
+
+        .hero {
+          min-height: 88vh;
+          padding-top: 102px;
+        }
+
+        h1 {
+          font-size: clamp(3rem, 18vw, 5rem);
+        }
+
+        .stats,
+        .grid,
+        .roles,
+        .photos,
+        .network-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .step {
+          grid-template-columns: 18px 1fr;
+        }
+
+        .status,
+        .step h3,
+        .step p:last-child {
+          grid-column: 2;
+        }
+
+        .footer {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#inicio">
+        <img src="vikiings.png" alt="Logo Vikings Robots" />
+        <span>
+          <strong data-site-field="teamName">Vikings Robots</strong>
+          <small data-site-field="schoolName">SESI-SP CE-397 Maua</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Navegacao principal">
+        <a href="#sobre">Sobre</a>
+        <a href="#identidade">Identidade</a>
+        <a href="#diario">Diario</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#rede">Rede</a>
+        <a href="#contato">Contato</a>
+        <a href="admin.html">Controle</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="inicio">
+        <div class="ship" aria-hidden="true">
+          <div class="sail"></div>
+          <div class="mast"></div>
+          <div class="hull"></div>
+        </div>
+        <div class="hero-copy">
+          <p class="eyebrow">Robotica com espirito viking</p>
+          <h1 data-site-field="teamName">Vikings Robots</h1>
+          <p data-site-field="heroText">
+            Somos a equipe de robotica do SESI-SP CE-397 Maua. Unimos tecnologia, coragem
+            e trabalho em equipe para transformar ideias em projetos reais.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#diario">Ver Diario</a>
+            <a class="button secondary" href="#identidade">Conhecer o Distintivo</a>
+          </div>
+        </div>
+        <div class="logo-stage">
+          <img src="vikiings.png" alt="Distintivo oficial da equipe Vikings Robots" />
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Resumo da equipe">
+        <article>
+          <strong>CE-397</strong>
+          <span>Equipe criada no SESI-SP de Maua</span>
+        </article>
+        <article>
+          <strong>VR</strong>
+          <span>Logo e distintivo oficial com identidade viking tecnologica</span>
+        </article>
+        <article>
+          <strong>100%</strong>
+          <span>Registro de cada etapa da nossa jornada</span>
+        </article>
+      </section>
+
+      <section class="section split" id="sobre">
+        <div>
+          <p class="eyebrow">Nossa saga</p>
+            <h2 data-site-field="aboutTitle">Construir robos como quem prepara uma expedicao.</h2>
+        </div>
+        <div>
+          <p>
+            A Vikings Robots nasceu para reunir estudantes que aprendem fazendo. Cada
+            prototipo, teste, erro, ajuste e descoberta vira parte do nosso diario de bordo.
+          </p>
+          <p>
+            O tema viking representa coragem, estrategia e uniao. A robotica entra com
+            programacao, mecanica, criatividade e muita mao na massa.
+          </p>
+        </div>
+      </section>
+
+      <section class="section identity" id="identidade">
+        <div class="identity-layout">
+          <div>
+            <p class="eyebrow">Identidade oficial</p>
+            <h2>O distintivo mistura forca viking e engenharia moderna.</h2>
+            <p>
+              O capacete, os machados, as engrenagens e os circuitos mostram bem a ideia da
+              equipe: tradicao de clã, precisao tecnica e energia de competicao.
+            </p>
+          </div>
+          <div class="identity-preview">
+            <img src="vikiings.png" alt="Logo e distintivo Vikings Robots SESI-SP CE-397 Maua" />
+          </div>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <span class="icon"></span>
+            <h3>Azul eletrico</h3>
+            <p>Representa tecnologia, sensores, programacao e a energia dos olhos do capacete.</p>
+          </article>
+          <article class="card">
+            <span class="icon"></span>
+            <h3>Laranja mecanico</h3>
+            <p>Lembra engrenagens, movimento, construcao e atitude de competicao.</p>
+          </article>
+          <article class="card">
+            <span class="icon"></span>
+            <h3>Metal e machados</h3>
+            <p>Mostram resistencia, foco e a forca visual do universo viking.</p>
+          </article>
+          <article class="card">
+            <span class="icon"></span>
+            <h3>SESI-SP CE-397</h3>
+            <p>Marca a origem da equipe e reforca o orgulho de representar Maua.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="diario">
+        <div class="row">
+          <div>
+            <p class="eyebrow">Diario de bordo</p>
+            <h2>Etapa por etapa, sem perder o fio da historia.</h2>
+          </div>
+          <div class="filters" aria-label="Filtrar etapas">
+            <button class="active" type="button" data-filter="todas">Todas</button>
+            <button type="button" data-filter="feito">Feitas</button>
+            <button type="button" data-filter="proximo">Proximas</button>
+          </div>
+        </div>
+        <div class="timeline">
+          <article class="step" data-status="feito">
+            <span class="dot"></span>
+            <p class="status">Feito</p>
+            <h3>Fundacao da equipe</h3>
+            <p>Organizacao do grupo, definicao do proposito e inicio da documentacao.</p>
+          </article>
+          <article class="step" data-status="feito">
+            <span class="dot"></span>
+            <p class="status">Feito</p>
+            <h3>Identidade visual</h3>
+            <p>Criacao do logo, distintivo, camisetas e bandeiras da equipe.</p>
+          </article>
+          <article class="step" data-status="feito">
+            <span class="dot"></span>
+            <p class="status">Feito</p>
+            <h3>Registro das etapas</h3>
+            <p>Organizacao de fotos, testes, arquivos, atas e aprendizados do projeto.</p>
+          </article>
+          <article class="step" data-status="proximo">
+            <span class="dot"></span>
+            <p class="status">Proxima</p>
+            <h3>Galeria de prototipos</h3>
+            <p>Espaco para mostrar robos, pecas, codigos e evolucao tecnica.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section team" id="equipe">
+        <div>
+          <p class="eyebrow">Tripulacao</p>
+          <h2>Cada funcao ajuda o robo a sair do papel.</h2>
+        </div>
+        <div class="roles">
+          <article class="role">
+            <h3>Construcao</h3>
+            <p>Planeja estrutura, materiais, encaixes e montagem.</p>
+          </article>
+          <article class="role">
+            <h3>Programacao</h3>
+            <p>Cria logica, testa sensores e ajusta movimentos.</p>
+          </article>
+          <article class="role">
+            <h3>Design</h3>
+            <p>Cuida da identidade, registros e apresentacoes.</p>
+          </article>
+          <article class="role">
+            <h3>Pesquisa</h3>
+            <p>Documenta problemas, solucoes, evidencias e resultados.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section gallery">
+        <div>
+          <p class="eyebrow">Galeria</p>
+          <h2>Proximos registros da saga.</h2>
+        </div>
+        <div class="photos">
+          <figure class="photo">
+            <div class="placeholder"><span>&lt;/&gt;</span></div>
+            <figcaption>Montagem do robo</figcaption>
+          </figure>
+          <figure class="photo">
+            <div class="placeholder" style="background: linear-gradient(135deg, var(--orange), var(--gold))">
+              <span>VR</span>
+            </div>
+            <figcaption>Camisetas e bandeiras</figcaption>
+          </figure>
+          <figure class="photo">
+            <div class="placeholder" style="background: linear-gradient(135deg, #161d29, var(--steel))">
+              <span>01</span>
+            </div>
+            <figcaption>Testes e ajustes</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section network" id="rede">
+        <div>
+          <p class="eyebrow">Rede de projetos</p>
+          <h2>A Vikings faz parte de um ecossistema maior.</h2>
+          <p>
+            Estes portais conectam a equipe a outros projetos educacionais, tecnologicos
+            e criativos desenvolvidos no SESI-SP CE-397.
+          </p>
+        </div>
+        <div class="network-grid">
+          <article class="project-card">
+            <span class="project-tag">Portal principal</span>
+            <h3>Portal de Projetos Tecnologicos</h3>
+            <p>
+              Vitrine para reunir projetos, producoes e iniciativas de tecnologia criadas
+              no ambiente escolar.
+            </p>
+            <a
+              class="button primary"
+              href="https://josueluizpro.github.io/portal-de-projetos-html/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Acessar Portal
+            </a>
+          </article>
+          <article class="project-card">
+            <span class="project-tag">SESI 2026</span>
+            <h3>Portal SESI 2026</h3>
+            <p>
+              Espaco para organizar e apresentar projetos, informacoes e experiencias
+              desenvolvidas ao longo do ano.
+            </p>
+            <a
+              class="button secondary"
+              href="https://josueluizpro.github.io/Portal-SESI_2026/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Acessar Portal
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact" id="contato">
+        <div>
+          <p class="eyebrow">Contato</p>
+          <h2>Quer acompanhar a jornada?</h2>
+          <p data-site-field="contactText">
+            Este espaco pode receber o Instagram da equipe, e-mail institucional,
+            formulario ou links para o diario completo.
+          </p>
+        </div>
+        <form class="form">
+          <label>
+            Nome
+            <input placeholder="Seu nome" />
+          </label>
+          <label>
+            Mensagem
+            <textarea rows="4" placeholder="Escreva uma mensagem"></textarea>
+          </label>
+          <button class="button primary" type="button">Enviar Mensagem</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        <span data-site-field="teamName">Vikings Robots</span> -
+        <span data-site-field="schoolName">SESI-SP CE-397 Maua</span><br />
+        <small>Orientador de Estudos Digitais: JOSUÉ LUIZ</small>
+      </p>
+      <p>Coragem para criar. Metodo para evoluir.</p>
+    </footer>
+
+    <script>
+      const savedSite = JSON.parse(localStorage.getItem("vikings-site-control") || "{}");
+
+      Object.entries(savedSite).forEach(([field, value]) => {
+        document.querySelectorAll(`[data-site-field="${field}"]`).forEach((item) => {
+          item.textContent = value;
+        });
+      });
+
+      document.querySelectorAll("[data-filter]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const filter = button.dataset.filter;
+          document.querySelectorAll("[data-filter]").forEach((item) => item.classList.remove("active"));
+          button.classList.add("active");
+          document.querySelectorAll("[data-status]").forEach((item) => {
+            item.classList.toggle("hidden", filter !== "todas" && item.dataset.status !== filter);
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

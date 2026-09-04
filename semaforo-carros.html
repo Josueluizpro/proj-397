@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semáforo de Carros com Arduino</title>
+
+<link rel="stylesheet" href="css/estilo.css">
+
+</head>
+<body background="imagens/fundo-projeto01.png">
+
+<table border="0" width="900" align="center">
+     <tr>
+            <td  weigth  = "200">
+            <img src="imagens/sesi.png" width="89"></td>
+        
+            <td align="right">
+            <a href="index.html">Home</a> |
+            <a href="quem-somos.html">Quen Somos</a>|
+            <a href="projetos.html">Projetos</a> |
+            <a href="contatos.html">Contatos</a> |
+            </td>
+     </tr>
+
+
+     <tr>
+        <td colspan="2">
+            <h1>Semáforo de Carros com Arduino</h1>
+            <h3>
+            Aprenda a montar, programar e compreender 
+            o funcionamento de um sistema de sinalização 
+            utilizando Arduino e componentes eletrônicos básicos.
+            </h3>
+            <p style="text-align: justify;">
+            O semáforo é um dos sistemas de sinalização mais
+            utilizados no mundo. Ele organiza o trânsito, aumenta 
+            a segurança e controla o fluxo de veículos e pedestres 
+            por meio de uma sequência de luzes coloridas.
+            Neste projeto você irá construir um modelo funcional 
+            de um semáforo utilizando a plataforma Arduino, LEDs, 
+            resistores e uma protoboard. Durante a atividade, 
+            aprenderá conceitos fundamentais de eletrônica, 
+            programação e lógica de funcionamento de sistemas automatizados.
+            Ao longo desta página, cada etapa será apresentada de forma organizada,
+             com explicações, imagens, desafios e exemplos práticos, permitindo 
+             que estudantes e professores acompanhem o desenvolvimento do projeto 
+             de maneira clara e progressiva.
+            </p>
+        </td>
+     </tr>
+
+     <tr>
+            <td colspan="2">
+                <img src="imagens/cab01.jpg" width="900" height="500">
+            </td>
+     </tr>
+
+     <tr>
+        <td colspan="2">
+            <h2>Objetivos de Aprendizagem</h2>
+            <h3>Ao concluir este projeto, espera-se que você seja capaz de:</h3>
+            <ul>
+                <li>Compreender a função de um semáforo e sua importância para a organização do trânsito.</li>
+                <li>Identificar os principais componentes utilizados na montagem do circuito eletrônico.</li>
+                <li>Montar corretamente um circuito utilizando Arduino, protoboard, LEDs, resistores e cabos de conexão.</li>
+                <li>Desenvolver um programa simples para controlar a sequência de funcionamento das luzes do semáforo.</li>
+                <li>Testar, analisar e corrigir possíveis erros durante a montagem e a programação.</li>
+                <li>Relacionar os conhecimentos adquiridos com aplicações presentes no cotidiano e em sistemas automatizados.</li>
+                <li>aprenderá a usar a plataforma Tinkercad criando simulacões com circuitos eletronicos e programação com arduino.</li>
+            </ul>
+        </td>
+     </tr>
+
+
+     <tr>
+        <td colspan="2">
+            <h2>O que você irá desenvolver?</h2>
+
+            <p style="text-align: justify;">
+            Durante esta atividade, você colocará em prática conhecimentos 
+            de diferentes áreas, como programação, eletrônica, lógica 
+            e resolução de problemas. Além disso, desenvolverá habilidades
+             importantes, como observação, organização, trabalho em equipe, 
+             criatividade e pensamento computacional.O objetivo não é apenas montar
+              um circuito que funcione, mas compreender como cada componente participa
+               do projeto e como pequenas alterações no código podem modificar completamente
+                o comportamento do sistema.
+            </p> 
+        </td>
+     </tr>
+
+     <tr>
+        <td colspan="2">
+            <h2>Onde encontramos um semáforo no dia a dia?</h2>
+            <p style=" text-align: justify;">
+                Os semáforos fazem parte da rotina de milhões de pessoas e desempenham um papel essencial na organização do trânsito. Eles utilizam sinais luminosos para orientar motoristas, ciclistas e pedestres, contribuindo para um deslocamento mais seguro e organizado.
+
+Embora sejam mais conhecidos nos cruzamentos das cidades, sistemas semelhantes também estão presentes em diversos outros ambientes, onde controlam o fluxo de pessoas, veículos e equipamentos de forma automática.
+
+Ao desenvolver este projeto, você estará construindo uma versão simplificada de um sistema utilizado diariamente em diferentes situações, compreendendo como a programação e a eletrônica trabalham juntas para controlar uma sequência de ações.
+            </p>
+        </td>
+     </tr>
+
+     <tr>
+        <td colspan="2">
+            <h2>Como funciona um semáforo?</h2>
+            <p style="text-align: justify;">
+                Um semáforo é um sistema de sinalização que organiza o fluxo de veículos e pedestres por meio de uma sequência programada de luzes. Cada cor possui uma função específica e informa aos usuários qual ação deve ser realizada em determinado momento.
+
+Em um ciclo básico, o semáforo alterna entre as luzes verde, amarela e vermelha, repetindo essa sequência continuamente para manter a circulação de forma segura e organizada.
+
+No projeto que desenvolveremos, o Arduino será responsável por controlar essa sequência automaticamente, acendendo e apagando cada LED no momento correto, simulando o funcionamento de um semáforo real.
+            </p>
+        </td>
+     </tr>
+
+     <tr>
+        
+            <td colspan="2">
+                <h2>O significado das cores</h2>
+               
+            <h3>🟢 Luz Verde</h3>
+             <p style="text-align: justify;">
+                Indica que a passagem está liberada. Os veículos podem seguir com atenção, respeitando as demais regras de trânsito.
+             </p>
+            <h3> 🟡 Luz Amarela</h3>
+            <p style="text-align: justify;">
+                É um sinal de atenção. Indica que a mudança para a luz vermelha está próxima e que o motorista deve reduzir a velocidade e preparar-se para parar, sempre observando as condições de segurança.
+            </p>
+            <h3>🔴 Luz Vermelha</h3>
+            <p style="text-align: justify;">
+                Indica que os veículos devem parar antes da faixa de retenção, aguardando a próxima liberação da via.
+            </p>
+              
+            </td>
+     </tr>
+
+     <tr>
+        <td colspan="2">
+            <h2>💡 Você sabia?</h2>
+            <p style="text-align: justify;">
+                Os semáforos modernos podem utilizar sensores, câmeras e sistemas inteligentes para adaptar o tempo de cada sinal de acordo com o fluxo de veículos. Esse tipo de tecnologia ajuda a reduzir congestionamentos, aumentar a segurança e melhorar a mobilidade urbana.
+            </p>
+
+        </td>
+     </tr>
+
+     <tr>
+        <td colspan="2">
+            <h2>💬 Momento para refletir</h2>
+            <p style="text-align: justify;">
+                <ul>
+                    <li>Por que o semáforo utiliza três cores diferentes?</li>
+                    <li>O que poderia acontecer se todas as luzes permanecessem acesas ao mesmo tempo?</li>
+                    <li>Como o Arduino "sabe" o momento certo de trocar cada luz?</li>
+                    <li>De que maneira a programação influencia o funcionamento desse sistema?</li>
+                </ul>
+
+Essas questões não possuem apenas uma resposta correta. Converse com seus colegas, compartilhe suas ideias e observe como diferentes pontos de vista podem enriquecer a aprendizagem.
+            </p>
+        </td>
+     </tr>
+
+     <tr>
+        <td colspan="2">
+            <h2>Conhecendo os Componentes do Projeto</h2>
+            <P style="text-align: justify;">
+Antes de iniciar a montagem do circuito, é importante conhecer os componentes que serão utilizados. Cada um deles possui uma função específica e, juntos, permitem que o Arduino controle o funcionamento do semáforo de forma automática.
+
+Ao compreender a função de cada componente, a montagem se torna mais fácil e a programação passa a fazer mais sentido.
+            </P>
+        </td>
+     </tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Arduino Uno</h2>
+        <p style="text-align: justify;">
+O Arduino Uno é uma plataforma de prototipagem eletrônica baseada em um microcontrolador programável. Ele funciona como o "cérebro" do projeto, executando o programa desenvolvido e controlando todos os componentes conectados ao circuito.
+
+Durante este projeto, o Arduino será responsável por acender e apagar os LEDs na sequência correta, simulando o funcionamento de um semáforo.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <img src="imagens/placa02.jpg" width="900" height="500">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Protoboard</h2>
+        <p style="text-align: justify;">
+A protoboard é uma placa de montagem que permite conectar componentes eletrônicos sem a necessidade de solda. Ela facilita a construção de protótipos, possibilitando realizar testes, modificações e correções de maneira rápida e segura.
+
+Na atividade, a protoboard será utilizada para organizar os LEDs, resistores e cabos de conexão.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <img src="imagens/protobooard.jpg" width="900" height="400">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>LED (Diodo Emissor de Luz)</h2>
+        <p style="text-align: justify;">
+O LED é um componente eletrônico capaz de emitir luz
+ quando percorrido por corrente elétrica. Cada cor possui 
+ uma função específica no projeto:<br>
+🟢 Verde — Indica que os veículos podem seguir.<br>
+
+🟡 Amarelo — Indica atenção para a mudança do sinal.<br>
+
+🔴 Vermelho — Indica que os veículos devem parar.
+
+Neste projeto, os LEDs representarão as luzes de um semáforo real.
+         </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <img src="imagens/ledes01.jpg" width="900" height="400">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Resistor</h2>
+        <p style="text-align: justify;">
+O resistor é responsável por limitar a passagem da corrente elétrica no circuito, protegendo os LEDs contra excesso de corrente.
+
+Sem esse componente, os LEDs podem ser danificados, reduzindo sua vida útil ou até deixando de funcionar.
+        </p>
+    </td>
+</tr>
+<tr> 
+    <td colspan="2">
+        <img src="imagens/resistor01.jpg" width="900" height="400">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Jumpers (Cabos de Conexão)</h2>
+        <p style=" text-align: justify;">
+            Os jumpers são fios utilizados para realizar as conexões entre o Arduino, a protoboard e os demais componentes do circuito.
+
+Eles permitem que os sinais elétricos sejam transmitidos corretamente entre os diferentes elementos da montagem.
+        </p>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+        <img src="imagens/cabosjumper01.jpg" width="900" height="400">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Cabo USB</h2>
+        <p style=" text-align: justify;">
+            O cabo USB possui duas funções importantes durante a atividade:
+<ul>
+    <li>Alimentar o Arduino com energia elétrica.</li>
+    <li>Enviar o programa desenvolvido no computador para a placa.</li>
+    <li>Sem ele, não seria possível programar nem testar o projeto.</li>
+    
+</ul>
+
+        </p>
+    </td>
+</tr>
+
+<tr> 
+    <td colspan="2">
+        <img src="imagens/cabousb01.jpg" width="900" height="400">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Materiais Necessários</h2>
+        <p style="text-align: justify;">
+Antes de iniciar a montagem do circuito, verifique se todos os materiais estão disponíveis sobre a bancada de trabalho. Organizar os componentes antes de começar facilita a montagem, evita interrupções durante a atividade e contribui para um ambiente de trabalho mais seguro e organizado<br><br>
+<h3>Componente:</h3>
+<ul>
+    <li>Arduino Uno</li>
+    <li>Protoboard</li>
+    <li>LED Vermelho</li>
+    <li>LED Amarelo</li>
+    <li>LED Verde</li>
+    <li>Resistores de 220 Ω</li>
+    <li>Cabos Jumpers</li>
+    <li>Cabo USB</li>
+    <li>Computador com Arduino IDE instalada</li>
+</ul>
+ </p>
+    </td>
+</tr>
+
+
+<tr>
+    <td colspan="2">
+        <img src="imagens/projeto-semaforo01.jpg" width="900" height="500">
+    </td>
+</tr>
+
+<tr>
+<td colspan="2">
+    <h2>Preparando a Bancada de Trabalho</h2>
+    <p style="text-align: justify;">
+Antes de conectar qualquer componente, reserve alguns minutos para organizar o espaço de trabalho. <br>
+
+Uma bancada organizada ajuda a reduzir erros, facilita a identificação dos componentes e torna a montagem mais eficiente. <br> <br>
+
+<h3>Confira os seguintes itens:</h3>
+ <ul>
+    <li>Todos os componentes estão separados.</li>
+    <li>O computador está ligado.</li>
+    <li>O Arduino IDE está instalado e funcionando.</li>
+    <li>O cabo USB está disponível.</li>
+    <li>Os LEDs estão separados por cor.</li>
+    <li>Os resistores estão identificados.</li>
+    <li>A protoboard está limpa e em boas condições.</li>
+    <li>Os cabos Jumpers estão organizados.</li>
+ </ul>
+
+    </p>
+
+</td>
+ </tr>
+
+ <tr>
+    <td colspan="2">
+        <h2>Boas práticas durante a montagem</h2>
+        <p style="text-align: justify;">
+            Durante a atividade, procure manter os componentes organizados e manipule-os com cuidado. Evite puxar os cabos com força, mantenha a bancada limpa e siga cada etapa da montagem com atenção.
+
+Caso encontre alguma dificuldade, interrompa a montagem e analise o circuito antes de realizar novas conexões. Muitas vezes, pequenos detalhes, como um cabo conectado no local incorreto ou um LED invertido, podem impedir o funcionamento do projeto.
+        </p>
+    </td>
+ </tr>
+<tr>
+    <td colspan="2"> 
+        <h2>Dica do Professor</h2>
+        <h3>💡 Organização faz parte da aprendizagem.</h3>
+        <p style=" text-align: justify;">
+Na robótica e na eletrônica, não basta apenas montar o circuito. Observar, organizar os materiais e conferir cada conexão antes de ligar o sistema são hábitos importantes que também fazem parte do processo de aprendizagem e do trabalho de engenheiros, técnicos e programadores.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>📚 Objetivo desta etapa</h2>
+
+        <p style="text-align: justify;">
+            Antes de iniciar a montagem, queremos que o estudante desenvolva um hábito importante: planejar antes de executar.
+
+Na robótica e na eletrônica, organizar os materiais, conferir os componentes e preparar corretamente a bancada de trabalho são etapas fundamentais para o sucesso de qualquer projeto. Muitos problemas podem ser evitados quando a montagem é realizada com calma, atenção e organização.
+
+Nesta etapa, o objetivo não é apenas separar os materiais, mas compreender a função de cada componente, verificar se todos estão em boas condições de uso e preparar um ambiente de trabalho seguro e organizado.
+
+Esses cuidados fazem parte da rotina de engenheiros, técnicos, programadores e profissionais da área tecnológica, contribuindo para o desenvolvimento de habilidades como planejamento, organização, responsabilidade e resolução de problemas.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Montagem do Circuito</h2>
+        <p style="text-align: justify;">
+Chegou o momento de colocar o projeto em prática. Nesta etapa, iniciaremos a montagem do circuito eletrônico que permitirá ao Arduino controlar o funcionamento do semáforo.
+
+A montagem será realizada em etapas, possibilitando compreender a função de cada componente antes de prosseguir para a próxima conexão. Trabalhar dessa maneira facilita a identificação de possíveis erros, torna a atividade mais organizada e contribui para uma aprendizagem mais significativa.
+
+Não tenha pressa. Observe atentamente cada imagem, leia as orientações e compare sua montagem com o modelo apresentado. Caso algo não funcione como esperado, revise cada etapa antes de continuar.
+
+Lembre-se de que, na robótica e na eletrônica, errar faz parte do processo de aprendizagem. Muitas descobertas acontecem justamente durante a análise e a correção de um circuito.
+
+Ao final desta seção, você terá montado um protótipo funcional do semáforo de carros e estará preparado para programar o Arduino e compreender como a sequência das luzes é controlada.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+
+<h2>Posicionando a Protoboard e o Arduino</h2>
+<p style="text-align: justify;">
+Antes de realizar qualquer conexão elétrica, organize corretamente os principais componentes sobre a bancada de trabalho.
+
+Posicione o Arduino Uno ao lado da protoboard, deixando espaço suficiente para realizar as conexões com conforto e segurança. Essa organização facilita a visualização do circuito, reduz a possibilidade de erros durante a montagem e torna o trabalho mais eficiente.
+
+Neste momento, ainda não será necessário conectar nenhum cabo ou componente eletrônico. O objetivo é apenas preparar a área de montagem para as próximas etapas.</p>
+
+</p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <img src="imagens/arduinoprotobord02.jpg" width="900" height="500">
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Dica</h2>
+        <p style="text-align: justify;">
+Procure posicionar a protoboard sempre no mesmo 
+sentido apresentado nas imagens do projeto. Isso facilitará o 
+acompanhamento da montagem e evitará conexões em posições incorretas.<br> <br>
+
+<h2>Atenção</h2>
+
+Não conecte o cabo USB ao computador neste momento.
+ Todas as conexões do circuito devem ser realizadas com o
+  Arduino desligado, reduzindo o risco de danos aos componentes e 
+  aumentando a segurança durante a montagem.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Inserindo os LEDs na Protoboard</h2>
+        <p style="text-align: justify;">
+Com o Arduino e a protoboard devidamente posicionados, 
+iniciaremos a montagem inserindo os LEDs que representarão as luzes do semáforo.
+
+Utilize um LED verde, um LED amarelo e um LED vermelho. 
+Posicione-os na protoboard deixando um pequeno espaço entre eles, 
+
+facilitando as conexões que serão realizadas nas próximas etapas.
+
+Ao inserir os LEDs, observe atentamente a posição de seus terminais. 
+Cada LED possui dois terminais com funções diferentes: <br>
+
+<h3>Ânodo (terminal maior): </h3>
+responsável por receber a corrente elétrica.<br>
+
+<h3>Cátodo (terminal menor): responsável pelo retorno da corrente ao circuito (GND).</h3>
+
+A posição correta dos LEDs é fundamental para o funcionamento do projeto. Caso um LED seja instalado invertido, ele não acenderá mesmo que o programa esteja correto.
+<br>
+<h3>Dica</h3>  
+Organize os LEDs na mesma ordem em que um semáforo real funciona:<br> <br>
+🔴 Vermelho<br>
+
+🟡 Amarelo<br>
+
+
+🟢 Verde<br>
+
+Essa organização facilitará a identificação das conexões e tornará o circuito mais intuitivo durante a programação.
+<br>
+<br>
+<h3>Por que estamos fazendo isso?</h3>
+Antes de conectar qualquer fio, precisamos definir onde cada LED ficará instalado. Esse planejamento facilita a montagem, reduz erros e permite visualizar melhor o funcionamento do circuito antes mesmo de iniciar as ligações elétricas.
+
+</td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Conectando os Resistores</h2>
+        <p style="text-align: justify;">
+            Com os LEDs posicionados corretamente, é hora de instalar os resistores. Embora sejam componentes pequenos, eles desempenham um papel fundamental no funcionamento e na proteção do circuito.
+
+Cada LED deverá ser conectado a um resistor de 220 Ω (ohms). O resistor limita a corrente elétrica que passa pelo LED, evitando que ele receba uma corrente maior do que suporta.
+
+Durante a montagem, conecte um resistor a cada LED, conforme o esquema elétrico apresentado na atividade. Verifique cuidadosamente se os terminais estão bem encaixados na protoboard e se cada resistor está ligado ao LED correspondente.
+        
+<h2>Dica</h2>
+Os resistores não possuem lado correto para instalação. Eles podem ser conectados em qualquer orientação, desde que estejam posicionados nos pontos corretos do circuito.
+
+<h2>Atenção</h2>
+Nunca conecte um LED diretamente ao Arduino sem utilizar um resistor. O excesso de corrente pode danificar o componente e comprometer o funcionamento do projeto.
+
+<h2>Por que estamos fazendo isso?</h2>
+O resistor funciona como um dispositivo de proteção. Ele controla a quantidade de corrente elétrica que atravessa o LED, garantindo seu funcionamento seguro e aumentando sua vida útil.
+<h2>Você sabia?</h2> 
+Os resistores são utilizados em praticamente todos os equipamentos eletrônicos, como computadores, celulares, televisores e eletrodomésticos. Eles ajudam a controlar a corrente elétrica, protegendo componentes sensíveis e garantindo o funcionamento adequado dos circuitos.
+
+</p>
+    </td>
+</tr>
+
+
+<tr>
+    <td colspan="2">
+        <h2>Realizando as Conexões Elétricas</h2>
+        <p style=" text-align: justify;">
+Com os LEDs e os resistores devidamente instalados na protoboard, chegou o momento de realizar as conexões elétricas utilizando os cabos jumpers.
+
+Cada jumper será responsável por estabelecer a comunicação entre o Arduino e os componentes do circuito. É por meio dessas conexões que os sinais elétricos enviados pelo Arduino chegarão aos LEDs, permitindo controlar o acendimento de cada luz do semáforo.
+
+Realize as ligações seguindo cuidadosamente o diagrama do projeto. Após conectar cada cabo, confira novamente sua posição antes de prosseguir para a próxima conexão.
+
+<h2>Dica</h2>
+Faça uma conexão por vez. Após concluir cada ligação, compare sua montagem com a imagem apresentada na atividade. Esse hábito facilita a identificação de possíveis erros e evita retrabalho.
+        
+<h2>Atenção</h2>
+Evite utilizar cabos muito esticados ou cruzados sobre os componentes. Além de dificultarem a visualização do circuito, eles podem atrapalhar futuras manutenções e aumentar a chance de conexões incorretas.
+
+<h2>Por que estamos fazendo isso?</h2>
+Os cabos jumpers funcionam como caminhos por onde os sinais elétricos percorrem o circuito. Sem essas conexões, o Arduino não consegue enviar comandos aos LEDs, impossibilitando o funcionamento do semáforo.
+</p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Conferindo o Circuito</h2>
+        <p style="text-align: justify;">
+            Antes de conectar o Arduino ao computador, reserve alguns minutos para revisar toda a montagem. Essa conferência é uma etapa essencial e ajuda a identificar possíveis erros antes que o circuito seja energizado.
+
+Observe atentamente cada componente e compare sua montagem com o diagrama e as fotografias apresentadas nesta página. Pequenos detalhes, como um cabo conectado na posição incorreta ou um LED invertido, podem impedir o funcionamento do projeto.
+
+Lembre-se: revisar faz parte do processo de construção. Muitas vezes, um problema pode ser resolvido simplesmente conferindo as conexões com calma e atenção.
+     <h2>O que verificar?</h2>   
+     <h3>Antes de prosseguir, confira os seguintes itens:</h3>
+     <ul>
+        <li>Os LEDs estão posicionados corretamente?</li>
+        <li>Os resistores estão conectados aos LEDs?</li>
+        <li>Os jumpers foram ligados nos pinos corretos do Arduino?</li>
+        <li>Todos os cabos estão firmemente encaixados?</li>
+        <li>O circuito está organizado e semelhante ao modelo apresentado?</li>
+     </ul>
+
+     <h2>Dica</h2>
+Realize a conferência seguindo uma ordem. Comece pelos LEDs, depois verifique os resistores, os jumpers e, por último, as conexões com o Arduino. Essa estratégia reduz a chance de esquecer algum detalhe.
+
+<h2>Atenção</h2>
+
+Não altere várias conexões ao mesmo tempo. Caso encontre um erro, corrija apenas uma ligação, verifique novamente o circuito e só então prossiga. Essa prática facilita a identificação da causa do problema caso o circuito não funcione como esperado.
+<h2>Por que estamos fazendo isso?</h2>
+Na eletrônica e na robótica, revisar o trabalho antes de energizar o circuito é um procedimento de segurança e qualidade. Além de proteger os componentes, essa prática desenvolve atenção aos detalhes, organização e pensamento crítico, habilidades importantes para qualquer profissional da área tecnológica.
+<h2>Checklist Final</h2>
+<ul>
+    <li>LEDs instalados corretamente.</li>
+    <li>Resistores conectados.</li>
+    <li>Jumpers posicionados conforme o diagrama.</li>
+    <li>Arduino pronto para receber o programa.</li>
+    <li>Circuito revisado e pronto para os testes.</li>
+</ul>
+
+</p>
+    </td>
+</tr>
+
+<!--Programação na plataforma Arduino-->
+
+<tr>
+        <td colspan="2">
+            <h2>Preparando o Arduino para Programação</h2>
+            <p style="text-align: justify;">
+
+                O circuito já está montado e revisado. Agora chegou o momento de enviar um programa para o Arduino, permitindo que ele controle automaticamente o funcionamento do semáforo.
+
+Para isso, utilizaremos a Arduino IDE (Integrated Development Environment), o ambiente de desenvolvimento oficial da plataforma Arduino. É por meio desse programa que escreveremos, editaremos e enviaremos o código para a placa.
+
+Antes de iniciar a programação, conecte o Arduino ao computador utilizando o cabo USB. Em seguida, abra a Arduino IDE e realize as configurações iniciais.
+            
+<h2>Configurando a Arduino IDE</h2>
+
+Antes de enviar o programa para a placa, verifique as seguintes configurações:
+
+<ul>
+    <li>O Arduino está conectado ao computador pelo cabo USB.</li>
+    <li>A Arduino IDE está aberta.</li>
+    <li>A placa Arduino Uno foi selecionada.</li>
+    <li>A porta de comunicação (COM) correspondente ao Arduino foi selecionada.</li>
+    <li>O circuito permanece conectado conforme a montagem realizada anteriormente.</li>
+</ul>
+
+Após concluir essas verificações, o ambiente estará preparado para receber o programa que controlará o funcionamento do semáforo.
+
+<h2>Dica</h2>
+
+Sempre confirme se a placa e a porta de comunicação estão corretas antes de enviar um programa. Essa simples conferência evita muitos erros durante a programação.
+
+
+<h2>Atenção</h2>
+Caso a Arduino IDE não reconheça a placa automaticamente, verifique se o cabo USB está conectado corretamente e se a porta selecionada corresponde ao Arduino utilizado na atividade.
+
+
+<h2>Por que estamos fazendo isso?</h2>
+
+
+O Arduino executa apenas os programas que são enviados para sua memória. Antes de controlar qualquer componente eletrônico, é necessário preparar corretamente o ambiente de programação para que a comunicação entre o computador e a placa ocorra de forma segura e eficiente.
+
+
+<h2>Conferindo</h2>
+<ul>
+    
+<li>Arduino conectado ao computador. </li>
+<li>Arduino IDE aberta.</li>
+<li>Placa Arduino Uno selecionada.</li>
+<li>Porta de comunicação configurada.</li>
+<li>Ambiente pronto para enviar o programa.</li>
+</ul>
+</p>
+        </td>
+</tr>
+
+
+<tr>
+    <td colspan="2">
+        <h2>Entendendo o Programa</h2>
+        <p style="text-align: justify;">
+
+            Até este momento, preparamos o circuito eletrônico e configuramos o ambiente de programação. Agora chegou a hora de conhecer o programa que fará o Arduino controlar o funcionamento do semáforo.
+
+Um programa é uma sequência organizada de instruções que informa ao computador ou ao microcontrolador exatamente o que deve ser feito. No Arduino, essas instruções são escritas em uma linguagem de programação baseada em C/C++ e executadas na ordem em que foram programadas.
+
+Sempre que enviamos um programa para o Arduino, a placa passa a executar essas instruções automaticamente, controlando os componentes conectados ao circuito.
+
+Antes de analisar o código completo, é importante compreender duas partes fundamentais presentes em praticamente todos os programas desenvolvidos para Arduino.
+    <h2>A função setup()</h2>  
+    A função setup() é executada apenas uma vez, logo após o Arduino ser ligado ou reiniciado.
+
+Nessa etapa, normalmente configuramos os pinos que serão utilizados, definindo quais funcionarão como entrada e quais funcionarão como saída.
+
+Essas configurações preparam a placa para executar corretamente o restante do programa. 
+
+<h2>A função loop()</h2>
+Após concluir o setup(), o Arduino passa a executar continuamente a função loop().
+
+Tudo o que estiver dentro dessa função será repetido inúmeras vezes enquanto a placa permanecer ligada.
+
+No projeto do semáforo, será justamente dentro do loop() que a sequência das luzes verde, amarela e vermelha acontecerá continuamente, simulando o funcionamento de um semáforo real.
+
+<h2>Como o Arduino executa o programa?</h2>
+De forma simplificada, o funcionamento acontece da seguinte maneira:
+
+<ul>
+    <li>O Arduino é ligado.</li>
+    <li>A função setup() é executada uma única vez.</li>
+    <li>A função loop() inicia sua execução.</li>
+    <li>Ao chegar ao final do loop(), o Arduino retorna automaticamente ao início da mesma função.</li>
+    <li>Esse processo se repete continuamente até que a placa seja desligada.</li>
+</ul>
+
+
+<h2>Por que estamos fazendo isso?</h2>
+Compreender a estrutura básica de um programa facilita a leitura do código e ajuda a identificar a função de cada comando. Em vez de apenas copiar instruções, você passará a entender como o Arduino interpreta e executa cada etapa da programação.
+
+<h2>Preparado para programar?</h2>
+Na próxima seção, analisaremos o código completo do projeto. Cada comando será explicado individualmente, permitindo compreender sua função e sua importância no funcionamento do semáforo
+
+</p>
+</td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Conhecendo os Principais Comandos</h2>
+        <p style="text-align: justify;">
+            Antes de analisar o código completo do projeto, vamos conhecer alguns dos comandos mais utilizados na programação do Arduino. Compreender a função de cada um deles facilitará a leitura do programa e ajudará a entender como o semáforo será controlado.
+        <h3>const int</h3>
+        Esse comando é utilizado para declarar uma constante inteira.
+
+No projeto do semáforo, ele será utilizado para armazenar o número do pino ao qual cada LED está conectado. Dessa forma, o programa fica mais organizado e facilita futuras alterações.
+        <br><br>
+Exemplo:<br><br>
+const int ledVerde = 8; <br>
+
+Nesse exemplo, o LED verde está conectado ao pino digital 8 do Arduino.
+
+<h3>pinMode()</h3>
+
+O comando pinMode() define a função de um pino da placa Arduino.
+
+No projeto, os pinos conectados aos LEDs serão configurados como saída (OUTPUT), permitindo que o Arduino envie sinais elétricos para acender ou apagar cada LED.
+<br> <br>
+Exemplo: <br><br>
+
+pinMode(ledVerde, OUTPUT);
+
+<h3>digitalWrite()</h3>
+O comando digitalWrite() é utilizado para controlar o estado de um pino digital.
+
+Quando utilizamos HIGH, o pino fornece tensão elétrica.
+
+Quando utilizamos LOW, o fornecimento de tensão é interrompido.
+
+No projeto do semáforo, esse comando será responsável por acender e apagar cada LED.
+<br><br>
+Exemplo:
+<br><br>
+digitalWrite(ledVerde, HIGH);
+
+<h3>delay()</h3>
+O comando delay() faz o Arduino aguardar um determinado tempo antes de executar a próxima instrução.
+
+O tempo é informado em milissegundos.
+<br><br>
+Por exemplo:
+<br><br>
+1000 milissegundos = 1 segundo
+<br><br>
+2000 milissegundos = 2 segundos
+<br><br>
+5000 milissegundos = 5 segundos
+<br><br>
+Exemplo:
+<br><br>
+delay(3000);
+<br><br>
+Nesse caso, o Arduino aguardará três segundos antes de continuar executando o programa.
+
+<h3>HIGH</h3>
+HIGH indica que o pino digital ficará em nível lógico alto.
+
+Na prática, significa que o Arduino enviará tensão ao pino, permitindo o acionamento do componente conectado, como um LED.
+
+<h3>LOW</h3>
+LOW indica que o pino digital ficará em nível lógico baixo.
+
+Nesse estado, o Arduino deixa de fornecer tensão ao pino, desligando o componente conectado.
+
+<h2>Por que estamos estudando esses comandos?</h2>
+Conhecer esses comandos antes de analisar o programa torna a leitura do código mais simples e significativa. Em vez de apenas copiar instruções, você compreenderá a função de cada comando e perceberá como eles trabalham juntos para controlar o funcionamento do semáforo.
+
+<h2>Preparado para o próximo passo?</h2>
+Agora que você conhece os principais comandos da linguagem Arduino utilizados neste projeto, está preparado para analisar o código completo, compreender sua lógica de funcionamento e realizar pequenos testes para personalizar o comportamento do semáforo.
+</p>
+
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Código Completo do Projeto</h2>
+        <p style="text-align: justify;">
+            Agora que você já conhece os principais comandos utilizados na programação do Arduino, chegou o momento de analisar o código completo do projeto.
+
+Leia o programa com atenção antes de enviá-lo para a placa. Procure identificar os comandos estudados anteriormente, como const int, pinMode(), digitalWrite() e delay(). Você perceberá que eles trabalham em conjunto para controlar a sequência de funcionamento do semáforo.
+
+Após copiar o código para a Arduino IDE, revise todas as conexões do circuito e certifique-se de que a placa e a porta de comunicação foram selecionadas corretamente.
+        
+<h2>Código do Projeto</h2>
+📌 Insira aqui o código completo do projeto do semáforo.
+
+// Cole aqui o programa completo desenvolvido para este projeto.
+
+<h2>O que este programa faz?</h2>
+Quando o programa é enviado para o Arduino, a placa passa a controlar automaticamente os LEDs do circuito.
+
+<h3>A sequência executada será:</h3>
+<ul>
+    <li>Acender o LED verde durante o tempo programado.</li>
+    <li>Apagar o LED verde e acender o LED amarelo.</li>
+    <li>Apagar o LED amarelo e acender o LED vermelho.</li>
+    <li>Reiniciar automaticamente essa sequência, repetindo o ciclo continuamente enquanto o Arduino permanecer ligado.</li>
+</ul>
+
+<h2>Antes de enviar o programa</h2>
+
+<h3>Confira novamente os seguintes itens:</h3>
+
+<ul>
+    <li>O circuito foi montado corretamente.</li>
+
+<li>O Arduino está conectado ao computador.</li>
+<li>A placa Arduino Uno está selecionada.</li>
+<li>A porta de comunicação (COM) está correta.</li>
+<li>O código foi copiado sem alterações.</li>
+</ul>
+
+<h2>Dica</h2>
+Caso o programa apresente algum erro de compilação, leia atentamente a mensagem exibida pela Arduino IDE. Muitas vezes, um pequeno detalhe, como um caractere ausente ou um nome digitado incorretamente, pode impedir o envio do programa.
+
+<h2>Atenção</h2>
+Não desconecte o cabo USB enquanto o programa estiver sendo enviado para o Arduino. Aguarde a conclusão do processo antes de realizar qualquer alteração no circuito.
+
+<h2>Por que estamos fazendo isso?</h2>
+O programa é responsável por controlar todo o funcionamento do projeto. Sem ele, o Arduino não saberá quando acender ou apagar cada LED. A programação é o que transforma um circuito eletrônico em um sistema automatizado capaz de executar tarefas de forma precisa e repetitiva.
+</p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Analisando o Código Linha por Linha</h2>
+        <p style="text-align: justify;">
+Programar não significa apenas escrever comandos. Um bom programador é capaz de compreender a função de cada linha do programa e como elas trabalham em conjunto para controlar um sistema.
+
+Nesta etapa, analisaremos os principais trechos do código do semáforo. O objetivo não é decorar comandos, mas entender a lógica utilizada para que o Arduino controle a sequência das luzes.
+<h2>Declaração das constantes</h2> 
+
+const int ledVerde = 8;<br><br>
+const int ledAmarelo = 9;<br><br>
+const int ledVermelho = 10;<br><br>
+
+Essas linhas informam ao Arduino em quais pinos cada LED está conectado.
+
+Utilizar constantes torna o código mais organizado e facilita futuras alterações. Se um LED for conectado em outro pino, basta alterar o número nessa parte do programa.       
+
+<h2>Configurando os pinos</h2>
+
+pinMode(ledVerde, OUTPUT);<br><br>
+pinMode(ledAmarelo, OUTPUT);<br><br>
+pinMode(ledVermelho, OUTPUT);<br><br>
+
+Esses comandos aparecem dentro da função setup().
+
+Eles configuram os pinos como saídas, permitindo que o Arduino envie sinais elétricos para acender e apagar os LEDs.
+
+Essa configuração é realizada apenas uma vez, quando a placa é ligada.
+
+<h2>Acendendo o LED verde</h2>
+
+digitalWrite(ledVerde, HIGH);<br><br>
+delay(5000);<br><br>
+
+Primeiro, o Arduino envia energia para o LED verde utilizando o comando digitalWrite().
+
+Em seguida, o comando delay() mantém esse LED aceso durante cinco segundos.
+
+<h2>Apagando o LED verde</h2>
+
+digitalWrite(ledVerde, LOW);<br><br>
+
+Após o tempo programado, o Arduino interrompe o fornecimento de energia para o LED verde, fazendo com que ele se apague.
+<h2>Acendendo o LED amarelo</h2>
+
+digitalWrite(ledAmarelo, HIGH);<br><br>
+delay(2000);<br><br>
+
+O mesmo processo acontece com o LED amarelo.
+
+O Arduino liga o LED, aguarda o tempo definido no programa e, posteriormente, o desliga.
+
+<h2>Acendendo o LED vermelho</h2>
+digitalWrite(ledVermelho, HIGH);<br><br>
+delay(5000);<br><br>
+
+Por fim, o LED vermelho permanece aceso pelo tempo programado, indicando que os veículos devem permanecer parados.
+
+Após esse período, o programa retorna ao início da função loop(), reiniciando automaticamente toda a sequência.
+
+<h2>O que aprendemos?</h2>
+
+Ao analisar cada trecho do programa, percebemos que o funcionamento do semáforo é resultado da combinação de poucos comandos executados em uma sequência lógica.
+
+Essa organização facilita a leitura do código, torna a manutenção mais simples e permite criar novos projetos reutilizando os mesmos conceitos.
+
+<h2>Reflita</h2>
+<h3>Antes de continuar, tente responder às seguintes perguntas:</h3>
+
+<ul>
+<li>O que aconteceria se o tempo do LED amarelo fosse aumentado?</li>
+<li>Como poderíamos fazer o LED verde permanecer aceso por mais tempo?</li>
+<li>O que seria necessário modificar para adicionar um semáforo de pedestres?</li>
+<li>É possível criar uma sequência diferente utilizando os mesmos comandos?</li>
+</ul>
+Essas reflexões ajudam a desenvolver o raciocínio lógico e mostram que pequenas alterações no programa podem produzir diferentes comportamentos no circuito.
+</p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Testando o Projeto</h2>
+        <p style="text-align: justify;">
+            Chegou o momento de verificar se o circuito e o programa estão funcionando corretamente. Após enviar o código para o Arduino, observe atentamente o comportamento dos LEDs e compare o funcionamento do seu projeto com a sequência esperada.
+
+Durante os testes, procure identificar se cada LED acende no momento correto e permanece ligado pelo tempo programado. Caso o resultado seja diferente do esperado, não se preocupe. A análise e a correção de pequenos erros fazem parte do processo de aprendizagem.
+        
+<h2>Sequência esperada</h2>
+
+🟢 O LED verde acende.<br>
+🟢 O LED verde apaga.<br>
+🟡 O LED amarelo acende.<br>
+🟡 O LED amarelo apaga.<br>
+🔴 O LED vermelho acende.<br>
+🔴 O LED vermelho apaga.<br>
+🔄 A sequência reinicia automaticamente.<br>
+
+📷 Foto sugerida: Circuito em funcionamento com os LEDs acesos em diferentes momentos da sequência.
+
+
+<h2>O que observar durante o teste?</h2>
+
+Durante o funcionamento do projeto, responda às seguintes perguntas:<br><br>
+
+<ul>
+<li>Todos os LEDs acendem corretamente?</li>
+<li>A ordem das cores está correta?</li>
+<li>O tempo de cada LED corresponde ao programado?</li>
+<li>O ciclo reinicia automaticamente?</li>
+<li>Existe algum LED que permanece apagado ou aceso o tempo todo?</li>
+</ul>
+
+<h2>Registrando os resultados</h2>
+<h3>Anote suas observações durante o teste.</h3>
+<ul>
+    <li>O circuito funcionou na primeira tentativa?	☐ Sim ☐ Não</li>
+<li>Foi necessário corrigir alguma ligação?	__________________________</li>
+<li>Foi necessário alterar o código?	__________________________</li>
+<li>O projeto está funcionando corretamente?	☐ Sim ☐ Não</li>
+</ul>
+Esses registros ajudam a acompanhar a evolução da atividade e facilitam a identificação de melhorias para os próximos projetos.
+
+<h2>Dica</h2>
+
+Sempre realize um teste após cada alteração no circuito ou no código. Modificar vários elementos ao mesmo tempo dificulta descobrir a origem de um possível problema.
+
+<h2>Por que estamos fazendo isso?</h2>
+Testar um projeto é uma etapa essencial em qualquer processo de desenvolvimento tecnológico. Antes que um sistema seja utilizado na prática, ele precisa ser verificado para garantir que funciona de acordo com o planejado. Esse processo desenvolve a capacidade de observar, analisar resultados e propor soluções, habilidades fundamentais para quem trabalha com programação, robótica e eletrônica.
+
+<h2>Checklist Final</h2>
+
+<ul>
+<li>O programa foi enviado com sucesso.</li>
+<li>O circuito está funcionando corretamente.</li>
+<li>A sequência das luzes está correta.</li>
+<li>Os tempos estão de acordo com o programa.</li>
+<li>O projeto foi testado e validado.</li>
+</ul>
+</p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Solução de Problemas</h2>
+        <p style="text-align: justify;">
+            Durante a montagem e a programação, é normal encontrar algumas dificuldades. Na robótica e na eletrônica, identificar a causa de um problema faz parte do processo de aprendizagem.
+
+Antes de desmontar o circuito ou alterar o programa, observe atentamente o comportamento do projeto e compare sua montagem com o diagrama e as fotografias apresentadas nesta página.
+
+A tabela abaixo apresenta algumas situações comuns e possíveis formas de resolvê-las.
+
+        </p>
+    </td>
+</tr>
+</table>
+
+<table border="1" width="900" align="center">
+<tr>
+    <td>
+        Problema observado
+    </td>
+
+    <td>Possível causa</td>
+    <td>Como resolver</td>
+</tr>
+
+<tr>
+    <td>Nenhum LED acende.</td>
+    <td>Cabo USB desconectado ou programa não enviado para o Arduino.</td>
+    <td>Verifique a conexão USB e envie novamente o programa para a placa.</td>
+</tr>
+
+<tr>
+    <td>Apenas um LED acende.</td>
+    <td>Erro de ligação ou LED conectado incorretamente.</td>
+    <td>Confira as conexões e a posição dos terminais do LED.</td>
+
+</tr>
+
+<tr>
+    <td>Os LEDs acendem em uma ordem diferente da esperada.</td>
+    <td>Ligações dos pinos diferentes das utilizadas no programa.</td>
+    <td>Compare a montagem com o esquema elétrico e revise os números dos pinos no código.</td>
+</tr>
+
+<tr>
+    <td>Um LED permanece sempre aceso.</td>
+    <td>Erro na programação ou ligação incorreta do circuito.</td>
+    <td>Revise o código e verifique as conexões do LED correspondente.</td>
+</tr>
+
+<tr>
+    <td>O programa não é enviado para o Arduino.</td>
+    <td>Placa ou porta de comunicação incorreta.</td>
+    <td>Confirme se a placa Arduino Uno e a porta correta estão selecionadas na Arduino IDE.</td>
+</tr>
+
+<tr>
+    <td>O LED não acende.</td>
+    <td>LED invertido ou resistor mal conectado.</td>
+    <td>Verifique a posição do ânodo e do cátodo e confirme a instalação do resistor.</td>
+</tr>
+
+</table>
+
+<table border="0" width="900" align="center">
+    <tr>
+        <td colspan="2">
+ <h2>Como investigar um problema?</h2>
+
+ <p style="text-align: justify;">
+
+ <h3>Sempre que o projeto não funcionar como esperado, siga esta sequência:</h3>
+ <ul>
+    <li>Observe o comportamento do circuito.</li>
+    <li>Compare sua montagem com as imagens do projeto.</li>
+    <li>Verifique todas as conexões.</li>
+    <li>Confira o código enviado ao Arduino.</li>
+    <li>Corrija apenas um problema por vez.</li>
+    <li>Realize um novo teste antes de fazer outra alteração.</li>
+
+</ul>
+Essa metodologia facilita a identificação da causa do problema e evita alterações desnecessárias.
+
+<h2>Dica</h2>
+Errar faz parte do processo de aprendizagem. Cada teste realizado contribui para compreender melhor o funcionamento do circuito e desenvolver habilidades de análise, investigação e resolução de problemas.
+<h2>Objetivo desta etapa</h2>
+Mais importante do que encontrar um erro é aprender a investigá-lo. Desenvolver essa capacidade prepara você para enfrentar desafios cada vez mais complexos em projetos de robótica, programação e eletrônica.
+        </p>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <h2>Desafios e Extensões do Projeto</h2>
+        <p>Parabéns! Você concluiu a construção e a programação do seu primeiro semáforo com Arduino. Agora é hora de ir além.
+
+Os desafios a seguir foram elaborados para incentivar a criatividade, o raciocínio lógico e a aplicação dos conhecimentos adquiridos durante esta atividade. Não existe apenas uma solução correta. Analise cada proposta, planeje sua estratégia e registre os resultados obtidos.</p>
+    
+<h2>Desafio 1 – Alterando o tempo das luzes</h2>
+<p>Modifique o programa para aumentar ou diminuir o tempo em que cada LED permanece aceso.
+
+<h4>Objetivo:</h4> compreender como o comando delay() influencia o funcionamento do sistema.</p>
+
+<h2>Desafio 2 – Criando um novo ciclo</h2>
+
+<p>Altere a sequência original do semáforo e observe como o comportamento do circuito é modificado.</p>
+
+<h4>Objetivo:</h4> desenvolver o raciocínio lógico por meio da reorganização dos comandos do programa.
+
+<h2>Desafio 4 – Melhorando o Projeto</h2>
+<p>
+Pense em melhorias que poderiam tornar o semáforo mais próximo de um sistema real.
+
+Algumas ideias:
+<ul>
+    <li>Adicionar um botão para solicitação de travessia.</li>
+    <li>Utilizar um buzzer para emitir sinais sonoros.</li>
+    <li>Inserir uma contagem regressiva utilizando um display.</li>
+    <li>Criar um cruzamento com dois semáforos sincronizados.</li>
+</ul>
+<h4>Objetivo: </h4>estimular a criatividade e a busca por novas soluções tecnológicas.
+
+<h2>Espaço para suas ideias</h2>
+A inovação começa com uma boa pergunta. Utilize este espaço para registrar melhorias, novas funcionalidades ou adaptações que você gostaria de desenvolver futuramente.
+
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
+
+<h2>Compartilhe sua experiência</h2>
+Depois de concluir o projeto, converse com seus colegas e com o professor.
+<ul>
+    <li>O que foi mais fácil durante a montagem?</li>
+    <li>Qual foi o maior desafio encontrado?</li>
+    <li>Como você resolveu os problemas que surgiram?</li>
+    <li>O que faria diferente em uma próxima montagem?</li>
+
+</ul>
+Compartilhar experiências é uma forma importante de aprender, pois permite conhecer diferentes estratégias e soluções para o mesmo problema.
+
+<h2>Objetivo desta etapa</h2>
+A robótica vai muito além de seguir instruções. Ela envolve observar, testar, errar, corrigir e criar novas soluções para desafios reais.
+
+Esperamos que este projeto tenha despertado sua curiosidade e servido como ponto de partida para novas descobertas no universo da programação, da eletrônica e da automação.
+</p>
+
+
+</td>
+</tr>
+
+
+</table>
+    
+</body>
+</html>
